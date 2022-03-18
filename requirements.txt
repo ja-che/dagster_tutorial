@@ -1,0 +1,5 @@
+dagster
+dagit
+requests
+pytest
+pytest-cov
