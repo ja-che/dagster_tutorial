@@ -3,3 +3,5 @@ dagit
 requests
 pytest
 pytest-cov
+pandas
+scikit-learn

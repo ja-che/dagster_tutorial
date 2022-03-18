@@ -17,9 +17,16 @@ def find_highest_protein_cereal(cereals):
     return sorted_cereals[-1]["name"]
 
 
-@op(out={"first_output": Out(), "second_output": Out()})
-def compute_kpi(cereals):
+def compute_model_accuracy(model, data_test, target_test):
+    '''Compute model accuracy KPI'''
+    accuracy = model.score(data_test, target_test)
+    return accuracy
+
+
+@op(out={"first_output": Out(), "second_output": Out(), "third_output": Out()})
+def compute_kpi(data, model, data_test, target_test):
     '''Compute all KPIs'''
-    highest_calorie_cereal = find_highest_calorie_cereal(cereals)
-    highest_protein_cereal = find_highest_protein_cereal(cereals)
-    return highest_calorie_cereal, highest_protein_cereal
+    highest_calorie_cereal = find_highest_calorie_cereal(data)
+    highest_protein_cereal = find_highest_protein_cereal(data)
+    accuracy = compute_model_accuracy(model, data_test, target_test)
+    return highest_calorie_cereal, highest_protein_cereal, accuracy
